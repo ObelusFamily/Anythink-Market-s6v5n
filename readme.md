@@ -8,8 +8,17 @@ Please find more info about each part in the relevant Readme file ([frontend](fr
 
 When implementing a new feature or fixing a bug, please create a new pull request against `main` from a feature/bug branch and add `@vanessa-cooper` as reviewer.
 
-## To Run Locally
+## Docker Deployment
 
-1. Install [Docker](https://docs.docker.com/get-docker/)
-2. Install [Docker Compose](https://docs.docker.com/compose/install/)
-3. Run `docker-compose up`. 
+Install Docker if you have not already. https://docs.docker.com/get-docker/
+
+Run `docker-compose up` to create the containers.
+
+User get to the command line of the created containers through the Docker GUI/App or run `docker exec -it container-name sh` to access it from the terminal.
+
+Run `ls` to orientate yourself and make sure you are in the right directory before running commands!!!
+
+## Migrating
+
+`docker exec -it anythink-backend sh` and then `cd backend` to get to the directory where you should run `rails db:migrate`
+
