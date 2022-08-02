@@ -68,6 +68,10 @@ async def create_new_item(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=strings.ITEM_ALREADY_EXISTS,
         )
+
+    if item_create.image in [None, '']:
+        item_create.image = '/placeholder.png'
+
     item = await items_repo.create_item(
         slug=slug,
         title=item_create.title,

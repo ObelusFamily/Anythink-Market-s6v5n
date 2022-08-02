@@ -38,7 +38,7 @@ const ItemPreview = (props) => {
         alt="item"
         src={
           item.image === "" || item.image === null || item.image === undefined
-            ? window.location.origin + "/placeholder.png"
+            ? "/placeholder.png"
             : item.image
         }
         className="card-img-top item-img"
