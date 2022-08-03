@@ -21,6 +21,7 @@ from app.models.domain.users import User
 
 SELLER_USERNAME_ALIAS = "seller_username"
 SLUG_ALIAS = "slug"
+TITLE_ALIAS = "title"
 
 CAMEL_OR_SNAKE_CASE_TO_WORDS = r"^[a-z\d_\-]+|[A-Z\d_\-][^A-Z\d_\-]*"
 
@@ -103,6 +104,7 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
     async def filter_items(  # noqa: WPS211
         self,
         *,
+        title: Optional[str] = None,
         tag: Optional[str] = None,
         seller: Optional[str] = None,
         favorited: Optional[str] = None,
@@ -136,6 +138,32 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
             ),
         )
         # fmt: on
+
+        if title:
+            query = Query.from_(
+                items,
+            ).select(
+                items.id,
+                items.slug,
+                items.title,
+                items.description,
+                items.body,
+                items.image,
+                items.created_at,
+                items.updated_at,
+                Query.from_(
+                    users,
+                ).where(
+                    users.id == items.seller_id,
+                ).select(
+                    users.username,
+                ).as_(
+                    SELLER_USERNAME_ALIAS,
+                ),
+            ).where(
+                items.title.like("%" + title + "%")
+            )
+            # fmt: on
 
         if tag:
             query_params.append(tag)
@@ -249,10 +277,34 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
 
         raise EntityDoesNotExist("item with slug {0} does not exist".format(slug))
 
+    async def get_item_by_title(
+        self,
+        *,
+        title: str,
+        requested_user: Optional[User] = None,
+    ) -> Item:
+        item_row = await queries.get_item_by_title(self.connection, title=title)
+        if item_row:
+            return await self._get_item_from_db_record(
+                item_row=item_row,
+                title=item_row[TITLE_ALIAS],
+                seller_username=item_row[SELLER_USERNAME_ALIAS],
+                requested_user=requested_user,
+            )
+
+        raise EntityDoesNotExist("item with title {0} does not exist".format(title))
+
     async def get_tags_for_item_by_slug(self, *, slug: str) -> List[str]:
         tag_rows = await queries.get_tags_for_item_by_slug(
             self.connection,
             slug=slug,
+        )
+        return [row["tag"] for row in tag_rows]
+
+    async def get_tags_for_item_by_titlr(self, *, title: str) -> List[str]:
+        tag_rows = await queries.get_tags_for_item_by_title(
+            self.connection,
+            title=title,
         )
         return [row["tag"] for row in tag_rows]
 
