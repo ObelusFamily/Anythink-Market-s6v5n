@@ -1,23 +1,12 @@
-<<<<<<< HEAD
-import psycopg2
 
-conn = psycopg2.connect(
-    database="anythink-market",
-    user='postgres',
-    password='postgres',
-    host='postgres',
-    port='5432'
-)
+from sqlalchemy import create_engine
 
-cursor = conn.cursor()
+database_url = "postgresql://postgres:@postgres-python:5432/anythink-market"
 
-for i in range(100):
-    cursor.execute("""INSERT INTO users(username, email, password) VALUES("user{i}", "user{i}@mail.com", "passwd{i}")""")
-    cursor.execute("""INSERT INTO items(slug, title, description) VALUES("item{i}", "title{i}", "description for item {i}")""")
-    cursor.execute("""INSERT INTO comments(body, item_id) VALUES("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ", {i})""")
+engine = create_engine(database_url, echo=True)
 
-cursor.close()
-conn.close()
-=======
-print('Please fill the seeds file')
->>>>>>> origin/main
+with engine.connect() as con:
+    for i in range(100):
+        con.execute("""INSERT INTO users(username, email, hashed_password) VALUES("user{i}", "user{i}@mail.com", "passwd{i}")""")
+        con.execute("""INSERT INTO items(slug, title, description, seller_id) VALUES("item{i}", "title{i}", "description for item {i}", {i}{i})""")
+        con.execute("""INSERT INTO comments(body, seller_id, item_id) VALUES("comment{i}", {i}{i}, {i})""")
