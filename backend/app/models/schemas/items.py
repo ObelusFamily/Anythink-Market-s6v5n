@@ -1,3 +1,4 @@
+from turtle import title
 from typing import List, Optional
 
 from pydantic import BaseModel, Field
@@ -37,6 +38,7 @@ class ListOfItemsInResponse(RWSchema):
 
 
 class ItemsFilters(BaseModel):
+    title: Optional[str] = None
     tag: Optional[str] = None
     seller: Optional[str] = None
     favorited: Optional[str] = None

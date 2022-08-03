@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import psycopg2
 
 conn = psycopg2.connect(
@@ -17,3 +18,6 @@ for i in range(100):
 
 cursor.close()
 conn.close()
+=======
+print('Please fill the seeds file')
+>>>>>>> origin/main
