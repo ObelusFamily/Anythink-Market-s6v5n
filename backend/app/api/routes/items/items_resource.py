@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 from turtle import title
+=======
+>>>>>>> refs/remotes/origin/main
 from typing import Optional
 
 from fastapi import APIRouter, Body, Depends, HTTPException, Response
@@ -7,7 +10,10 @@ from starlette import status
 from app.api.dependencies.items import (
     check_item_modification_permissions,
     get_item_by_slug_from_path,
+<<<<<<< HEAD
     get_item_by_title_from_path,
+=======
+>>>>>>> refs/remotes/origin/main
     get_items_filters,
 )
 from app.api.dependencies.authentication import get_current_user_authorizer
@@ -37,7 +43,10 @@ async def list_items(
     items_repo: ItemsRepository = Depends(get_repository(ItemsRepository)),
 ) -> ListOfItemsInResponse:
     items = await items_repo.filter_items(
+<<<<<<< HEAD
         title=items_filters.title,
+=======
+>>>>>>> refs/remotes/origin/main
         tag=items_filters.tag,
         seller=items_filters.seller,
         favorited=items_filters.favorited,
@@ -90,12 +99,15 @@ async def retrieve_item_by_slug(
 ) -> ItemInResponse:
     return ItemInResponse(item=ItemForResponse.from_orm(item))
 
+<<<<<<< HEAD
 @router.get("/{title}", response_model=ItemInResponse, name="items:get-item")
 async def retrieve_item_by_title(
     item: Item = Depends(get_item_by_title_from_path),
 ) -> ItemInResponse:
     return ItemInResponse(item=ItemForResponse.from_orm(item))
 
+=======
+>>>>>>> refs/remotes/origin/main
 
 @router.put(
     "/{slug}",

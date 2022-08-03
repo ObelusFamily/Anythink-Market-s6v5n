@@ -79,7 +79,10 @@ class ItemsQueriesMixin:
         self, conn: Connection, *, slug: str
     ) -> Record: ...
     async def get_item_by_slug(self, conn: Connection, *, slug: str) -> Record: ...
+<<<<<<< HEAD
     async def get_item_by_title(self, conn: Connection, *, title: str) -> Record: ...
+=======
+>>>>>>> refs/remotes/origin/main
     async def create_new_item(
         self,
         conn: Connection,

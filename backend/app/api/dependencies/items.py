@@ -19,7 +19,10 @@ from app.services.items import check_user_can_modify_item
 
 
 def get_items_filters(
+<<<<<<< HEAD
     title: Optional[str] = None,
+=======
+>>>>>>> refs/remotes/origin/main
     tag: Optional[str] = None,
     seller: Optional[str] = None,
     favorited: Optional[str] = None,
@@ -27,7 +30,10 @@ def get_items_filters(
     offset: int = Query(DEFAULT_ITEMS_OFFSET, ge=0),
 ) -> ItemsFilters:
     return ItemsFilters(
+<<<<<<< HEAD
         title=title,
+=======
+>>>>>>> refs/remotes/origin/main
         tag=tag,
         seller=seller,
         favorited=favorited,
@@ -49,6 +55,7 @@ async def get_item_by_slug_from_path(
             detail=strings.ITEM_DOES_NOT_EXIST_ERROR,
         )
 
+<<<<<<< HEAD
 async def get_item_by_title_from_path(
     title: str = Path(..., min_length=1),
     user: Optional[User] = Depends(get_current_user_authorizer(required=False)),
@@ -61,6 +68,8 @@ async def get_item_by_title_from_path(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=strings.ITEM_DOES_NOT_EXIST_ERROR,
         )
+=======
+>>>>>>> refs/remotes/origin/main
 
 def check_item_modification_permissions(
     current_item: Item = Depends(get_item_by_slug_from_path),

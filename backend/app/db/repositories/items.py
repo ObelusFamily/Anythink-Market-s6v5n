@@ -104,7 +104,10 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
         self,
         *,
         tag: Optional[str] = None,
+<<<<<<< HEAD
         title: Optional[str] = None,
+=======
+>>>>>>> refs/remotes/origin/main
         seller: Optional[str] = None,
         favorited: Optional[str] = None,
         limit: int = 20,
@@ -114,6 +117,7 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
         query_params: List[Union[str, int]] = []
         query_params_count = 0
 
+<<<<<<< HEAD
         if title:
             query = Query.from_(
                 items,
@@ -161,6 +165,30 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
                     SELLER_USERNAME_ALIAS,
                 ),
             )
+=======
+        # fmt: off
+        query = Query.from_(
+            items,
+        ).select(
+            items.id,
+            items.slug,
+            items.title,
+            items.description,
+            items.body,
+            items.image,
+            items.created_at,
+            items.updated_at,
+            Query.from_(
+                users,
+            ).where(
+                users.id == items.seller_id,
+            ).select(
+                users.username,
+            ).as_(
+                SELLER_USERNAME_ALIAS,
+            ),
+        )
+>>>>>>> refs/remotes/origin/main
         # fmt: on
 
         if tag:
