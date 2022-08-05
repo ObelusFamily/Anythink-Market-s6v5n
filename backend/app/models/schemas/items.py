@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-from turtle import title
-=======
->>>>>>> refs/remotes/origin/main
 from typing import List, Optional
 
 from pydantic import BaseModel, Field
@@ -41,10 +37,7 @@ class ListOfItemsInResponse(RWSchema):
 
 
 class ItemsFilters(BaseModel):
-<<<<<<< HEAD
     title: Optional[str] = None
-=======
->>>>>>> refs/remotes/origin/main
     tag: Optional[str] = None
     seller: Optional[str] = None
     favorited: Optional[str] = None
