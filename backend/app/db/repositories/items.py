@@ -104,6 +104,7 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
         self,
         *,
         tag: Optional[str] = None,
+        title: Optional[str] = None,
         seller: Optional[str] = None,
         favorited: Optional[str] = None,
         limit: int = 20,
@@ -134,6 +135,8 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
             ).as_(
                 SELLER_USERNAME_ALIAS,
             ),
+        ).where(
+            items.title.like(f'%{title}%' if title else '%%')
         )
         # fmt: on
 

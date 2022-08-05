@@ -48,7 +48,6 @@ FROM items
 WHERE slug = :slug
 LIMIT 1;
 
-
 -- name: create-new-item<!
 WITH seller_subquery AS (
     SELECT id, username
