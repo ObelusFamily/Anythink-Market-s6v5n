@@ -35,10 +35,7 @@ async def list_items(
     items_repo: ItemsRepository = Depends(get_repository(ItemsRepository)),
 ) -> ListOfItemsInResponse:
     items = await items_repo.filter_items(
-<<<<<<< HEAD
         title=items_filters.title,
-=======
->>>>>>> origin/main
         tag=items_filters.tag,
         seller=items_filters.seller,
         favorited=items_filters.favorited,
@@ -91,10 +88,6 @@ async def retrieve_item_by_slug(
 ) -> ItemInResponse:
     return ItemInResponse(item=ItemForResponse.from_orm(item))
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/main
 @router.put(
     "/{slug}",
     response_model=ItemInResponse,
