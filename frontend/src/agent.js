@@ -57,10 +57,13 @@ const Items = {
   byTag: (tag, page) =>
     requests.get(`/items?tag=${encode(tag)}&${limit(1000, page)}`),
 <<<<<<< HEAD
+<<<<<<< HEAD
   byTitle: (title, page) =>
     requests.get(`/items?title=${encode(title)}&${limit(1000, page)}`),
 =======
 >>>>>>> refs/remotes/origin/main
+=======
+>>>>>>> origin/main
   del: (slug) => requests.del(`/items/${slug}`),
   favorite: (slug) => requests.post(`/items/${slug}/favorite`),
   favoritedBy: (seller, page) =>

@@ -48,6 +48,7 @@ FROM items
 WHERE slug = :slug
 LIMIT 1;
 
+<<<<<<< HEAD
 -- name: get-item-by-title^
 SELECT id,
        slug,
@@ -61,6 +62,8 @@ SELECT id,
 FROM items
 WHERE title = :title
 LIMIT 1;
+=======
+>>>>>>> origin/main
 
 -- name: create-new-item<!
 WITH seller_subquery AS (
