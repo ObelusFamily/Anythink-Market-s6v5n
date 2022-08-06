@@ -27,6 +27,7 @@ body {
   background-position: top;
   background-repeat: no-repeat;
 }
+
 .page {
   margin-top: 2 * $spacer;
   margin-bottom: 2 * $spacer;
@@ -58,4 +59,14 @@ body {
 
 .user-info {
   min-width: 350px;
+}
+
+#search-box {
+  border-radius: 5px;
+  flex-direction:row;
+  border: none;
+}
+
+#search {
+  display: inline-flex;
 }
