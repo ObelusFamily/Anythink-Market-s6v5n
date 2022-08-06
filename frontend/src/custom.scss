@@ -46,7 +46,8 @@ body {
 
 .item-img {
   height: 150px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .crop-text-3 {
