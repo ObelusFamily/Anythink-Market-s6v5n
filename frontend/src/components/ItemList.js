@@ -8,6 +8,17 @@ const ItemList = (props) => {
   }
 
   if (props.items.length === 0) {
+    if (props.title.length > 2) {
+      return (
+        <div id="empty" className="py-4">
+          <div className="d-flex flex-column mt-4">
+            <div className="d-flex justify-content-center mt-4">
+              No items found for "<b>{props.title}</b>".
+            </div>
+          </div>
+        </div>
+      );
+    }
     return <div className="py-4 no-items">No items are here... yet.</div>;
   }
 
@@ -27,6 +38,7 @@ const ItemList = (props) => {
         pager={props.pager}
         itemsCount={props.itemsCount}
         currentPage={props.currentPage}
+        title={props.title}
       />
     </div>
   );
